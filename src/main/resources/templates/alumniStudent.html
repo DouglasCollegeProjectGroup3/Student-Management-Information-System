@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Information Management System</title>
+
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+
+</head>
+<body style="background-color:#e9c46a;">
+
+<div  class="container my-2">
+
+    <h1 style="color:#42275a; font-family: 'Roboto', sans-serif;">Student Management System</h1>
+    <a th:href ="@{/addAlumniStudentData}" class="btn btn-primary btn-sm mb-3">Add Alumni Student</a>
+    <a th:href="@{/}" class="btn btn-info btn-sm mb-3">Back Student List</a>
+    <table border="1" class="table table-striped table-dark">
+        <thead>
+        <tr>
+            <th>
+                <a th:href="@{'/pageAlumni/' + ${currentPage} + '?sortField=studentID&sortDir=' + ${reverseSortDir}}">
+                    Student ID</a>
+            </th>
+            <th>
+                <a th:href="@{'/pageAlumni/' + ${currentPage} + '?sortField=firstName&sortDir=' + ${reverseSortDir}}">
+                    Student First Name</a>
+            </th>
+            <th>
+                <a th:href="@{'/pageAlumni/' + ${currentPage} + '?sortField=lastName&sortDir=' + ${reverseSortDir}}">
+                    Student Last Name</a>
+            </th>
+            <th>
+                <a th:href="@{'/pageAlumni/' + ${currentPage} + '?sortField=emailID&sortDir=' + ${reverseSortDir}}">
+                    Student Email</a></th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="AlumniStudent: ${alumniStudent}">
+            <td th:text="${AlumniStudent.studentID}"></td>
+            <td th:text="${AlumniStudent.firstName}"></td>
+            <td th:text="${AlumniStudent.lastName}"></td>
+            <td th:text="${AlumniStudent.emailID}"></td>
+            <td><a th:href="@{/showFormForUpdateAlumniStudent/{id}(id=${AlumniStudent.id})}" class="btn btn-primary">Update</a>
+                <a th:href="@{/deleteAlumniStudentRecord/{id}(id=${AlumniStudent.id})}" class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div th:if="${totalPages >1}">
+        <div class="row col-sm-10">
+            <div class="col-sm-2">
+                Total Rows: [[${totalItems}]]
+
+            </div>
+            <div class="col-sm-4">
+                <span th:each="i: ${#numbers.sequence(1, totalPages)}">
+                      <a th:if="${currentPage != i}" th:href="@{'/pageAlumni/' + ${i}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">[[${i}]]</a>
+                      <span th:unless="${currentPage != i}">[[${i}]]</span> &nbsp; &nbsp;
+                    </span>
+            </div>
+            <div class="col-sm-1">
+
+                <a th:if="${currentPage < totalPages}" th:href="@{'/pageAlumni/' + ${currentPage + 1}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Next</a>
+                <span th:unless="${currentPage < totalPages}">Next</span>
+            </div>
+
+            <div class="col-sm-1">
+                <a th:if="${currentPage < totalPages}" th:href="@{'/pageAlumni/' + ${totalPages}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Last</a>
+                <span th:unless="${currentPage < totalPages}">Last</span>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Management System</title>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+
+</head>
+<body style="background-color:#e9c46a;">
+<div class="container">
+    <h1 style="color:#42275a; font-family: 'Roboto', sans-serif;">Student Management System</h1>
+    <hr>
+    <h2 style="color:#42275a; font-family: 'Roboto', sans-serif;">Add New Student</h2>
+    <form  action="#" th:action="@{/saveStudent}" th:object="${student}" method="POST">
+        <input class="form-control mb-4 col-4" type="text" th:field = "*{studentID}" placeholder="Student ID">
+    <input class="form-control mb-4 col-4" type="text" th:field = "*{firstName}" placeholder="Student First Name">
+    <input class="form-control mb-4 col-4" type="text" th:field = "*{lastName}" placeholder="Student last Name">
+    <input class="form-control mb-4 col-4" type="text" th:field = "*{emailID}" placeholder="Student Email">
+    <button class="btn btn-info col-4" type="submit">Save Student Information</button>
+    </form>
+    <hr>
+
+    <a th:href="@{/}"> Back to Student List</a>
+
+</div>
+
+</body>
+</html>

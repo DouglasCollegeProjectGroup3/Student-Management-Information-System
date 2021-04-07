@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+</head>
+
+<body style="background-color:#e9c46a;">
+<div class="container">
+    <h1 style="color:#42275a; font-family: 'Roboto', sans-serif;">Student Management System</h1>
+    <hr>
+    <h2 style="color:#42275a;font-family: 'Roboto', sans-serif;">Update Student Information</h2>
+    <form  action="#" th:action="@{/saveAlumniStudent}" th:object="${alumniStudent}" method="POST">
+        <input type="hidden" th:field="*{id}" />
+        <input class="form-control mb-4 col-4" type="text" th:field = "*{studentID}">
+        <input class="form-control mb-4 col-4" type="text" th:field = "*{firstName}">
+        <input class="form-control mb-4 col-4" type="text" th:field = "*{lastName}">
+        <input class="form-control mb-4 col-4" type="text" th:field = "*{emailID}">
+        <button class="btn btn-info col-4" type="submit">Update Alumni Student Information</button>
+    </form>
+    <hr>
+
+    <a th:href="@{/alumniStudent}"> Back to Alumni Student List</a>
+
+</div>
+</body>
+</html>
